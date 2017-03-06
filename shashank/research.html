@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="For Scientists" />
+<meta name="keywords" content="artificial intellience robotics formal methods planning stochastic shashank pathak Genova Warsaw Aachen Oxford Haifa" />
+<meta name="author" content="Shashank Pathak" />
+<link rel="stylesheet" type="text/css" href="css/pagestyle.css" />
+<title>Title</title>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</head>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script type="text/javascript" src="js/smoothscroll.js"></script>
+
+
+<body>
+<div class="page">
+  <div class="page2">
+     <div style="width:100%;height:1px;font-family: Tahoma; font-size: 1pt;"></div>
+     <div  class ="header">
+	     <div class="title">
+
+			<img src="img/safe-ai.png" style="float:right" />
+			Shashank Pathak
+
+			<div class="subtitle">Safety, Artificial Intelligence, Robotics  </div>
+
+		      <div style="clear: both; height:1px;"></div>
+	</div> <!-- End of title -->
+		
+     </div> <!-- end header -->
+	
+     <!--This line is for future use -->   <div style="text-align:center; padding-top:10px; padding-bottom:10px;"></div>
+	      
+     <!--This line is for compatibility issues --> <div style="width:100%;height:5px;font-family: Tahoma; font-size: 1pt;"></div>
+     <!--in class page2 -->
+     <div class="postandside">
+        <div class="content">
+            <div class="post">
+              <p>I am primarily interested in safety of autonomous systems, especially robots. <strong>Safety</strong> is a very general term that can encapsulate notion of <em>not reaching a bad state</em> on one hand and of <em>certified behaviour</em> of the system under <em>all</em> conditions, on the other. I firmly believe no matter how much of an autonomy our systems gain, in order to be acceptable for the public use they must become <strong>demonstrably safe</strong>. Ensuring such a safety for systems that adapt -- via learning or planning -- is a challenging task that enthuses me to no bounds!</p>
+
+<p>Though I have in the past looked into control-theoretic as well as algorithmic approaches to safety, I am more inclined towards formal approaches to safety such as <em>formal verification</em> in general and <em>probabilistic model checking</em> in particular. The tools that can be used for Probabilistic Computational Tree Logic (PCTL) based model checking are <a href="www.prismmodelchecker.org/">PRISM</a> and <a href="https://github.com/moves-rwth/storm">STORM</a>. An intuitive example of PCTL is asking a question </p>
+
+<blockquote>
+  <p>Is the probability that <em>for k steps a boolean proposition \( \Phi_1 \) is true 
+and thence another boolean proposition \( \Phi_2 \) holds</em>,  less 
+than a given threshold \( \sigma\). </p>
+</blockquote>
+
+<p>Such things could be expressed as:</p>
+
+<div>
+$$
+\mathbb{P}_{\;\bowtie\; \sigma}(\Phi_1\;\; U^{< k}\;\; \Phi_2)
+$$
+</div>
+
+<p>where \(\bowtie \) represents the inequality operators.</p>
+
+<p>One of my current research interest is to seek to apply formal approaches to <strong>real</strong> robotic applications, where <em>real</em> implies that the problem has not been abstracted to such a high level where a  discrete grid-world is sufficient to represent everything relevant about the system. More precisely, I am interested in domains that are challenging on one hand -- such as partial observability which makes standard methods quite unscalable at times -- and yet have useful structures that allow for efficient solutions -- such as SLAM approaches in path-planning under high uncertainty that use motion models and observation models.</p>
+
+<p>A very high level description of <strong>Belief Space Planning</strong> approaches would be that it solves for <em>a locally optimal solution</em> to a given POMDP i.e., Partially Observable Markovian Decision Problem. More precisely, if \(\{x,u,z\}\) denote the unobservable state, control action and the observation itself, respectively, then at at any planning step \(k\), belief space planning involves non-myopic planning of the control actions \( u_{k+1} \) using the posterior distribution of the robot pose \( X_k \) given certain observation \( z_{k} \) . \( X_k \doteq \{ x_0, x_1 , \dots x_k\} \) represents the vector of all poses up till the step \( k \). Here, the motion model as well as the observation models are of the forms:</p>
+
+<div>
+$$
+x_{i+1} = f(x_i,u_i) + w_i, \; \; w_i \sim {\cal N}(0, \Sigma_w)\\
+z_k = h(x_k, A_i) + v_k, \; \; v_k \sim {\cal N}(0, \Sigma_v)
+$$
+</div>
+
+<p>where \( \Sigma_w \) and \( \Sigma_v \) are process noise covariance and observation noise covariance, respectively while \( A_i \) denotes the scene captured by the observation \( z_i\). These models can be denoted probabilistically as \( \mathbb{P}(x_{i+1}| x_i, u_i) \) and \( \mathbb{P}(z_k | x_k, A_i) \). Given a prior distribution \( \mathbb{P}(x_0) \) and these models, the joint probability distribution of \( X \) at any time \( k \) is:</p>
+
+<div>
+$$
+\mathbb{P}(X_k | {\cal H}) = \mathbb{P}(x_0) \prod_{i=1}^{k} \mathbb{P}(x_i|x_{i-1},u_{i-1}) \mathbb{P}(Z_i | x_i, A_i)
+$$
+</div>
+
+<p>where \( {\cal H} \) stands for <em>history</em> of all observations \( \{ z_1, z_2 , \dots z_k\} \) and control actions \( \{ u_0, u_1 , \dots u_{k-1} \} \).</p>
+
+<p>Under the Gaussian noise models mentioned before, the joint PDF of \( X_k \) turns out to be a Gaussian itself of the form \({\cal N}(X_k; \hat X_k, \hat\Sigma) \) where mean \( \hat X_k \) and covariance \( \hat \Sigma\) can be estimated efficiently using <em>maximum a posteriori</em> estimate (MAP).</p>
+
+<p>A question then is:</p>
+
+<blockquote>
+  <p>Can the same assumptions be utilised to construct a formal model, possibly 
+a sub-class of POMDP, where concrete formal guarantees can be made for the
+underlying system.</p>
+</blockquote>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+		      <div style="clear: both;"></div>
+	         </div>
+		      <hr />
+				<div class ="date">last update: Mon Mar 06 2017</div>
+	    <div class="footer">
+           <p><a href="index.html">Home</a>|<a href="education.html">Education</a>|<a href="research.html">Research</a>|<a href="personal.html">Personal</a>|<a href="contact.html">Contact</a></p>
+
+      </div>  
+	    <div style="clear: both;">&nbsp;</div>
+        </div> <!-- end content -->
+	<!-- in class postandside -->
+
+        <div class="sidebar">
+         	<div class="sider">
+               <p><a href="homepage.html">Home</a>
+<a href="education.html">Education</a>
+<a href="research.html">Research </a>
+<a href="software.html">Software</a>
+<a href="publications.html">Publications</a>
+
+<hr />
+
+<a href="personal.html">Personal</a>
+
+<hr />
+
+<a href="contact.html">Contact</a>
+<a href="credits.html">Credits</a></p>
+
+
+
+             </div>
+         </div> <!--End of Sidebar -->
+
+         <!--in class postandside-->   
+         <!--this line is for compatibility issues --><div style="clear: both;">&#160;</div> <!--Displacement --> 
+     </div> <!--End of post and side -->
+
+     <!-- in class page2 -->
+     <div style="clear: both;">&nbsp;</div>
+  </div> <!--End of Page2 -->
+     <div style="clear: both;">&nbsp;</div>
+
+</div> <!-- End of page -->
+<!--this is end of the file -->
+</body>
+</html>

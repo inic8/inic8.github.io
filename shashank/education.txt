@@ -1,0 +1,9 @@
+My primary and secondary education has been in missionary schools, while my high school certification was with [ICSE and ISC](http://www.cisce.org) boards. India follows a 10+2 education system like the one in United Kingdom.
+
+I received my bachelors from Indian Institute of Technology, Delhi i.e., [IIT-D](https://en.wikipedia.org/wiki/Indian_Institute_of_Technology_Delhi) in Mechanical Engineering with the thesis on application of genetic algorithm for modelling of a visco-elastic system.
+
+I have pursued Masters in Advanced Robotics, funded generously by European Commission's program of Erasmus Mundus. This was done under consortium of universities in France, Italy and Poland with a university in Japan being an external partner. A dual masters degree in Computer Science and in Advanced Robotics was awarded to me through this.
+
+I pursued PhD in Computer Engineering in what was then Robotics, Brain and Cognitive Sciences at [IIT-Genova](https://www.iit.it). I have passionately followed the topic of safety in A.I. through out my PhD research. My co-advisor Prof. Armando Tacchella was instrumental in my shaping up as a researcher as well as a primary guiding force.
+
+In order to look into more scalable systems, for my postdoctoral study, I consciously moved away from learning (and reinforcement learning) to look into planning under uncertainty. Currently, I am pursuing this in the group of [Autonomous Navigation & Perception Lab](http://vindelman.net.technion.ac.il), founded recently under Vadim Indelman. The group is outstanding in the volume and dynamism of the research output.
