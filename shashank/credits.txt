@@ -1,3 +1,0 @@
-This simple site is based on a template from [Arman Akbarian](http://www.akbarian.org). So big thanks to him.
-
-
